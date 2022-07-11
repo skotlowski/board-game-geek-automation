@@ -1,3 +1,5 @@
+import time
+
 from pytest import fixture
 from requests import Session
 from selenium.webdriver.support.ui import WebDriverWait
@@ -58,6 +60,15 @@ def browser_logged_with_requests(session_logged):
     })
 
     driver.refresh()
+
+    yield driver
+    driver.quit()
+
+
+@fixture(scope='function')
+def browser_session():
+    driver = webdriver.Firefox()
+    driver.maximize_window()
 
     yield driver
     driver.quit()
