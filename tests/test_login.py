@@ -17,7 +17,7 @@ class LoginTests:
         expected_response = 204
         session.get(url='https://boardgamegeek.com')
         response = session.post(url='https://boardgamegeek.com/login/api/v1', json=login_and_password)
-        print(response.cookies)
+
         assert response.status_code == expected_response
 
     @mark.selenium
