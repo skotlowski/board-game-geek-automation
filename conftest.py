@@ -69,6 +69,6 @@ def browser_logged_with_requests(session_logged):
 def browser_session():
     driver = webdriver.Firefox()
     driver.maximize_window()
-
+    driver.get(url='https://boardgamegeek.com')
     yield driver
     driver.quit()
