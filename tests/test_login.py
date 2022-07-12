@@ -30,7 +30,7 @@ class LoginTests:
         driver.find_element(By.CSS_SELECTOR, 'input[name="password"]').send_keys(login_data['credentials']['password'])
         wait(1)
         driver.find_element(By.CSS_SELECTOR, 'button[class="btn btn-lg btn-primary"]').click()
-        wait(1)
+        wait(2)
         page_source = driver.page_source
 
         assert 'Sign Out' in page_source
