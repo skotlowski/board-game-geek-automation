@@ -4,7 +4,7 @@ from pytest import mark
 @mark.registration
 class RegisterTests:
 
-    @mark.reques
+    @mark.request
     def test_registration_user(self):
         pass
 
