@@ -1,6 +1,7 @@
 from pytest import fixture
 from requests import Session
 from selenium import webdriver
+from faker import Faker
 import json
 
 
@@ -9,6 +10,14 @@ def json_file():
     with open(pass_file) as json_file:
         data = json.load(json_file)
         return data
+
+
+@fixture(scope='function')
+def fake_user():
+    faker = Faker()
+    user_name = faker.name().replace(' ', '')
+    password = faker.password(length=10)
+    return [user_name, password]
 
 
 @fixture(scope='session')
