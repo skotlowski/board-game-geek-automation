@@ -16,8 +16,9 @@ def json_file():
 def fake_user():
     faker = Faker()
     user_name = faker.name().replace(' ', '')
+    email = faker.ascii_email()
     password = faker.password(length=10)
-    return [user_name, password]
+    return [user_name, email, password]
 
 
 @fixture(scope='session')
