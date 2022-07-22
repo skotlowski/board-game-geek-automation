@@ -14,7 +14,7 @@ class RegisterTests:
 
         assert response.status_code == expected_response
 
-    @mark.test
+    @mark.selenium
     def test_registration_with_selenium(self, browser_session, fake_user):
         driver = browser_session
         driver.find_element(By.CSS_SELECTOR, 'a[routerlink="/join"]').click()
