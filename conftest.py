@@ -18,7 +18,9 @@ def fake_user():
     user_name = faker.name().replace(' ', '')
     email = faker.ascii_email()
     password = faker.password(length=10)
-    return [user_name, email, password]
+    return {'email': email,
+            'username': user_name,
+            'password': password}
 
 
 @fixture(scope='session')
