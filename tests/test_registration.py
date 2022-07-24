@@ -1,5 +1,4 @@
 from pytest import mark
-from time import sleep as wait
 from selenium.webdriver.common.by import By
 
 
@@ -23,10 +22,8 @@ class RegisterTests:
         driver.find_element(By.CSS_SELECTOR, '#join-email').send_keys(fake_user['email'])
         driver.find_element(By.CSS_SELECTOR, '#join-password').send_keys(fake_user['password'])
         driver.find_element(By.CSS_SELECTOR, 'button[type="submit"]').click()
-        wait(3)
-        driver.find_element(By.CSS_SELECTOR, '.btn btn-lg btn-link tw-text-muted').click()
 
-        wait(2)
+        driver.find_element(By.CSS_SELECTOR, '.btn btn-lg btn-link tw-text-muted').click()
         page_source = driver.page_source
 
         assert 'Sign Out' in page_source

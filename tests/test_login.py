@@ -2,6 +2,8 @@ from time import sleep as wait
 from requests import Session
 from pytest import mark
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 
 @mark.login
@@ -26,11 +28,12 @@ class LoginTests:
         login_data = login_and_password
         driver = browser_session
         driver.find_element(By.CSS_SELECTOR, 'a[ggloginbutton=""]').click()
+
         driver.find_element(By.CSS_SELECTOR, 'input[name="username"]').send_keys(login_data['credentials']['username'])
         driver.find_element(By.CSS_SELECTOR, 'input[name="password"]').send_keys(login_data['credentials']['password'])
-        wait(1)
         driver.find_element(By.CSS_SELECTOR, 'button[class="btn btn-lg btn-primary"]').click()
-        wait(2)
+        WebDriverWait(driver, 10).until(EC.presence_of_all_elements_located((By.CSS_SELECTOR, 'a[href="/logout"]')))
+
         page_source = driver.page_source
 
         assert 'Sign Out' in page_source
