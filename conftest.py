@@ -2,14 +2,7 @@ from pytest import fixture
 from requests import Session
 from selenium import webdriver
 from faker import Faker
-import json
-
-
-def json_file():
-    pass_file = 'pass.json'
-    with open(pass_file) as json_file:
-        data = json.load(json_file)
-        return data
+from operations import json_file
 
 
 @fixture(scope='function')
