@@ -1,4 +1,3 @@
-from time import sleep as wait
 from requests import Session
 from pytest import mark
 from selenium.webdriver.common.by import By
