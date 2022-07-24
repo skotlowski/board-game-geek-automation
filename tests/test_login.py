@@ -31,7 +31,10 @@ class LoginTests:
         driver.find_element(By.CSS_SELECTOR, 'input[name="username"]').send_keys(login_data['credentials']['username'])
         driver.find_element(By.CSS_SELECTOR, 'input[name="password"]').send_keys(login_data['credentials']['password'])
         driver.find_element(By.CSS_SELECTOR, 'button[class="btn btn-lg btn-primary"]').click()
-        WebDriverWait(driver, 10).until(EC.presence_of_all_elements_located((By.CSS_SELECTOR, 'a[href="/logout"]')))
+
+        # implicity wait for Sign Out text or explicity wait below
+        driver.find_element(By.CSS_SELECTOR, 'a[href="/logout"]')
+        # WebDriverWait(driver, 10).until(EC.presence_of_all_elements_located((By.CSS_SELECTOR, 'a[href="/logout"]')))
 
         page_source = driver.page_source
 
