@@ -11,7 +11,7 @@ def fake_user():
     user_name = faker.name().replace(' ', '')
     email = faker.ascii_email()
     password = faker.password(length=10)
-    return {'email': email,
+    yield {'email': email,
             'username': user_name,
             'password': password}
 
@@ -19,7 +19,7 @@ def fake_user():
 @fixture(scope='session')
 def login_and_password():
     data = json_file()
-    return data
+    yield data
 
 
 @fixture(scope='session')
@@ -32,7 +32,7 @@ def session_logged(login_and_password):
 
     session.get(url='https://boardgamegeek.com')
     session.post(url='https://boardgamegeek.com/login/api/v1', json=login_and_password)
-    return session
+    yield session
 
 
 @fixture(scope='function')
