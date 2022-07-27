@@ -23,7 +23,7 @@ class RegisterTests:
         driver.find_element(By.CSS_SELECTOR, '#join-password').send_keys(fake_user['password'])
         driver.find_element(By.CSS_SELECTOR, 'button[type="submit"]').click()
 
-        driver.find_element(By.CSS_SELECTOR, '.btn btn-lg btn-link tw-text-muted').click()
+        driver.find_element(By.CSS_SELECTOR, '.btn-link').click()
         page_source = driver.page_source
 
         assert 'Sign Out' in page_source
