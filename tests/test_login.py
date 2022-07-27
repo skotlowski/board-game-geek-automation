@@ -1,8 +1,8 @@
+from selenium_operations import click_login_button, click_sing_in_button,\
+    input_username, input_password, \
+    check_for_sign_out_button_to_be_ready, save_page_source
 from requests import Session
 from pytest import mark
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 
 
 @mark.login
@@ -26,16 +26,13 @@ class LoginTests:
     def test_login_with_selenium(self, login_and_password, browser_session):
         login_data = login_and_password
         driver = browser_session
-        driver.find_element(By.CSS_SELECTOR, 'a[ggloginbutton=""]').click()
 
-        driver.find_element(By.CSS_SELECTOR, 'input[name="username"]').send_keys(login_data['credentials']['username'])
-        driver.find_element(By.CSS_SELECTOR, 'input[name="password"]').send_keys(login_data['credentials']['password'])
-        driver.find_element(By.CSS_SELECTOR, 'button[class="btn btn-lg btn-primary"]').click()
+        click_login_button(driver)
+        input_username(driver, login_data)
+        input_password(driver, login_data)
+        click_sing_in_button(driver)
+        check_for_sign_out_button_to_be_ready(driver)
 
-        # implicitly wait for Sign Out text or explicity wait below
-        driver.find_element(By.CSS_SELECTOR, 'a[href="/logout"]')
-        # WebDriverWait(driver, 10).until(EC.presence_of_all_elements_located((By.CSS_SELECTOR, 'a[href="/logout"]')))
-
-        page_source = driver.page_source
+        page_source = save_page_source(driver)
 
         assert 'Sign Out' in page_source
