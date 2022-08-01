@@ -11,12 +11,36 @@ def click_sing_in_button(driver):
     driver.find_element(By.CSS_SELECTOR, 'button[class="btn btn-lg btn-primary"]').click()
 
 
-def input_username(driver, data):
+def login_input_username(driver, data):
     driver.find_element(By.CSS_SELECTOR, 'input[name="username"]').send_keys(data['credentials']['username'])
 
 
-def input_password(driver, data):
+def login_input_password(driver, data):
     driver.find_element(By.CSS_SELECTOR, 'input[name="password"]').send_keys(data['credentials']['password'])
+
+
+def register_input_username(driver, fake_user):
+    driver.find_element(By.CSS_SELECTOR, '#join-username').send_keys(fake_user['username'])
+
+
+def register_input_email(driver, fake_user):
+    driver.find_element(By.CSS_SELECTOR, '#join-email').send_keys(fake_user['email'])
+
+
+def register_input_password(driver, fake_user):
+    driver.find_element(By.CSS_SELECTOR, '#join-password').send_keys(fake_user['password'])
+
+
+def click_registration_submit_button(driver):
+    driver.find_element(By.CSS_SELECTOR, 'button[type="submit"]').click()
+
+
+def click_join_button(driver):
+    driver.find_element(By.CSS_SELECTOR, 'a[routerlink="/join"]').click()
+
+
+def accept_registration_form(driver):
+    driver.find_element(By.CSS_SELECTOR, '.btn-link').click()
 
 
 def check_for_sign_out_button_to_be_ready(driver):

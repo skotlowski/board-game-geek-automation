@@ -1,5 +1,7 @@
 from pytest import mark
-from selenium.webdriver.common.by import By
+from selenium_operations import register_input_username, \
+    register_input_email, register_input_password, click_registration_submit_button, \
+    accept_registration_form, click_join_button
 
 
 @mark.registration
@@ -16,14 +18,14 @@ class RegisterTests:
     @mark.selenium
     def test_registration_with_selenium(self, browser_session, fake_user):
         driver = browser_session
-        driver.find_element(By.CSS_SELECTOR, 'a[routerlink="/join"]').click()
+        click_join_button(driver)
 
-        driver.find_element(By.CSS_SELECTOR, '#join-username').send_keys(fake_user['username'])
-        driver.find_element(By.CSS_SELECTOR, '#join-email').send_keys(fake_user['email'])
-        driver.find_element(By.CSS_SELECTOR, '#join-password').send_keys(fake_user['password'])
-        driver.find_element(By.CSS_SELECTOR, 'button[type="submit"]').click()
+        register_input_username(driver, fake_user)
+        register_input_email(driver, fake_user)
+        register_input_password(driver, fake_user)
+        click_registration_submit_button(driver)
 
-        driver.find_element(By.CSS_SELECTOR, '.btn-link').click()
+        accept_registration_form(driver)
         page_source = driver.page_source
 
         assert 'Sign Out' in page_source
