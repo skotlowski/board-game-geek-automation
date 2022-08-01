@@ -1,7 +1,7 @@
 from pytest import mark
 from requests import Session
 from selenium_operations import click_login_button, click_sing_in_button,\
-    input_username, input_password, \
+    login_input_username, login_input_password, \
     check_for_sign_out_button_to_be_ready, save_page_source
 
 
@@ -24,12 +24,11 @@ class LoginTests:
 
     @mark.selenium
     def test_login_with_selenium(self, login_and_password, browser_session):
-        login_data = login_and_password
         driver = browser_session
 
         click_login_button(driver)
-        input_username(driver, login_data)
-        input_password(driver, login_data)
+        login_input_username(driver, login_and_password)
+        login_input_password(driver, login_and_password)
         click_sing_in_button(driver)
         check_for_sign_out_button_to_be_ready(driver)
 
