@@ -1,8 +1,8 @@
+from pytest import mark
+from requests import Session
 from selenium_operations import click_login_button, click_sing_in_button,\
     input_username, input_password, \
     check_for_sign_out_button_to_be_ready, save_page_source
-from requests import Session
-from pytest import mark
 
 
 @mark.login
