@@ -2,7 +2,8 @@ from pytest import fixture
 from requests import Session
 from selenium import webdriver
 from faker import Faker
-from operations import json_file
+from operations.json_operations import json_file
+from operations.common_selenium_operations import click_logout_button
 
 
 @fixture(scope='function')
@@ -63,6 +64,7 @@ def browser_logged_with_requests(session_logged):
     driver.refresh()
 
     yield driver
+    click_logout_button(driver)
     driver.quit()
 
 
