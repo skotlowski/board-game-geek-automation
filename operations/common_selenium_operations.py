@@ -13,5 +13,18 @@ def click_logout_button(driver):
     driver.find_element(By.CSS_SELECTOR, 'a[href="/logout"]').click()
 
 
+def click_all_boardgames_in_browse(driver):
+    driver.find_element(By.XPATH, '//button[contains(text(), " Browse ")]').click()
+    driver.find_element(By.XPATH, '//a[contains(text(), " All Boardgames " )]').click()
+
+
+def click_on_first_game_from_list(driver):
+    driver.find_element(By.CSS_SELECTOR, '#results_objectname1 > a')
+
+
+def save_first_game_name_from_list(driver):
+    return driver.find_element(By.CSS_SELECTOR, '#results_objectname1 > a').text
+
+
 def save_page_source(driver):
     return driver.page_source
