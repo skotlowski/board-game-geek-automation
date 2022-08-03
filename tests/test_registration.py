@@ -1,5 +1,5 @@
 from pytest import mark
-from selenium_operations import register_input_username, \
+from operations.registration_selenium_operations import register_input_username, \
     register_input_email, register_input_password, click_registration_submit_button, \
     accept_registration_form, click_join_button
 
